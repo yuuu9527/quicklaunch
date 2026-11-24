@@ -44,6 +44,32 @@ static NSString * const YuQuickLaunchPinnedKey = @"pinnedApplications";
     return icon;
 }
 
+// Fallback for processes where LSApplicationWorkspace is unavailable.
+- (NSArray *)yu_quicklaunch_scanAppContainers {
+    NSMutableArray *apps = [NSMutableArray array];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSString *root = @"/var/containers/Bundle/Application";
+    for (NSString *container in [manager contentsOfDirectoryAtPath:root error:nil]) {
+        NSString *containerPath = [root stringByAppendingPathComponent:container];
+        for (NSString *item in [manager contentsOfDirectoryAtPath:containerPath error:nil]) {
+            if (![[item pathExtension] isEqualToString:@"app"]) {
+                continue;
+            }
+            NSString *infoPath = [[containerPath stringByAppendingPathComponent:item]
+                stringByAppendingPathComponent:@"Info.plist"];
+            NSDictionary *info = [NSDictionary dictionaryWithContentsOfFile:infoPath];
+            NSString *bundleID = info[@"CFBundleIdentifier"];
+            if (![bundleID isKindOfClass:[NSString class]] || bundleID.length == 0
+                || [bundleID hasPrefix:@"com.apple."]) {
+                continue;
+            }
+            NSString *name = info[@"CFBundleDisplayName"] ?: info[@"CFBundleName"] ?: bundleID;
+            [apps addObject:@{@"bundleID": bundleID, @"name": name}];
+        }
+    }
+    return apps;
+}
+
 - (void)yu_quicklaunch_loadApps {
     NSArray *stored = yu_quicklaunch_readPreferences()[YuQuickLaunchPinnedKey];
     self.yu_quicklaunch_pinned = [NSMutableArray array];
@@ -81,6 +107,9 @@ static NSString * const YuQuickLaunchPinnedKey = @"pinnedApplications";
             }
             [apps addObject:@{@"bundleID": bundleID, @"name": name}];
         }
+    }
+    if (apps.count == 0) {
+        [apps addObjectsFromArray:[self yu_quicklaunch_scanAppContainers]];
     }
     [apps sortUsingComparator:^NSComparisonResult(NSDictionary *lhs, NSDictionary *rhs) {
         return [lhs[@"name"] localizedCaseInsensitiveCompare:rhs[@"name"]];
