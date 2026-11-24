@@ -2,7 +2,15 @@ name: Probe
 on:
   workflow_dispatch:
 jobs:
-  probe:
+  ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - run: echo hello && uname -a
+      - run: echo ubuntu-ok
+  macos14:
+    runs-on: macos-14
+    steps:
+      - run: echo macos14-ok && sw_vers
+  macoslatest:
+    runs-on: macos-latest
+    steps:
+      - run: echo macoslatest-ok && sw_vers
