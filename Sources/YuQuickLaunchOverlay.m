@@ -161,14 +161,25 @@ static const CGFloat YuQuickLaunchPullThreshold = 42.0;
     });
 }
 
-- (BOOL)yu_quicklaunch_createWindow {
-    UIWindowScene *scene = nil;
-    for (UIWindow *window in [UIApplication sharedApplication].windows) {
-        if (window.windowScene) {
-            scene = window.windowScene;
-            break;
+- (UIWindowScene *)yu_quicklaunch_activeScene {
+    UIWindowScene *fallback = nil;
+    for (UIScene *candidate in [UIApplication sharedApplication].connectedScenes) {
+        if (![candidate isKindOfClass:[UIWindowScene class]]) {
+            continue;
+        }
+        UIWindowScene *scene = (UIWindowScene *)candidate;
+        if (!fallback) {
+            fallback = scene;
+        }
+        if (scene.activationState == UISceneActivationStateForegroundActive) {
+            return scene;
         }
     }
+    return fallback;
+}
+
+- (BOOL)yu_quicklaunch_createWindow {
+    UIWindowScene *scene = [self yu_quicklaunch_activeScene];
     if (!scene) {
         return NO;
     }
