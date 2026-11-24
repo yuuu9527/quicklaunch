@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "name": "QuickLaunch",
+  "id": "quicklaunch",
+  "display_name": "快捷启动",
+  "class_prefix": "YuQuickLaunch",
+  "symbol_prefix": "yu_quicklaunch",
+  "package": "com.yu.quicklaunch",
+  "bundle": "com.apple.springboard",
+  "sdk_version": "16.5",
+  "minimum_ios": "14.0",
+  "preferences": true,
+  "slider": false,
+  "github_actions": true
+}

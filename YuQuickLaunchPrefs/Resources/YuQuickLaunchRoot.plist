@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>title</key><string>快捷启动</string>
+    <key>items</key>
+    <array>
+        <dict>
+            <key>cell</key><string>PSGroupCell</string>
+            <key>label</key><string>基本设置</string>
+        </dict>
+        <dict>
+            <key>cell</key><string>PSSwitchCell</string>
+            <key>label</key><string>启用插件</string>
+            <key>key</key><string>enabled</string>
+            <key>defaults</key><string>com.yu.quicklaunch</string>
+            <key>default</key><false/>
+        </dict>
+
+        <dict>
+            <key>cell</key><string>PSGroupCell</string>
+            <key>label</key><string>触发方式</string>
+            <key>footerText</key><string>底部触发区域只有屏幕最下方一条窄带，区域内会被插件接管，建议保留系统手势可用的中心区域。</string>
+        </dict>
+        <dict>
+            <key>cell</key><string>PSLinkListCell</string>
+            <key>label</key><string>触发方式</string>
+            <key>key</key><string>triggerMode</string>
+            <key>defaults</key><string>com.yu.quicklaunch</string>
+            <key>default</key><integer>0</integer>
+            <key>validTitles</key>
+            <array>
+                <string>底部右侧上滑</string>
+                <string>底部整宽上滑</string>
+                <string>长按底部右侧</string>
+                <string>关闭触发</string>
+            </array>
+            <key>validValues</key>
+            <array>
+                <integer>0</integer>
+                <integer>1</integer>
+                <integer>2</integer>
+                <integer>3</integer>
+            </array>
+        </dict>
+        <dict>
+            <key>cell</key><string>PSSwitchCell</string>
+            <key>label</key><string>显示最近使用</string>
+            <key>key</key><string>showRecents</string>
+            <key>defaults</key><string>com.yu.quicklaunch</string>
+            <key>default</key><true/>
+        </dict>
+        <dict>
+            <key>cell</key><string>PSLinkListCell</string>
+            <key>label</key><string>图标列数</string>
+            <key>key</key><string>columns</string>
+            <key>defaults</key><string>com.yu.quicklaunch</string>
+            <key>default</key><integer>2</integer>
+            <key>validTitles</key>
+            <array>
+                <string>2 列</string>
+                <string>3 列</string>
+                <string>4 列</string>
+            </array>
+            <key>validValues</key>
+            <array>
+                <integer>2</integer>
+                <integer>3</integer>
+                <integer>4</integer>
+            </array>
+        </dict>
+
+        <dict>
+            <key>cell</key><string>PSGroupCell</string>
+            <key>label</key><string>已固定应用</string>
+            <key>footerText</key><string>固定的应用会显示在面板的“已固定”分组中。</string>
+        </dict>
+        <dict>
+            <key>cell</key><string>PSLinkCell</string>
+            <key>label</key><string>选择固定应用</string>
+            <key>detail</key><string>YuQuickLaunchAppPickerController</string>
+            <key>isController</key><true/>
+        </dict>
+
+        <dict>
+            <key>cell</key><string>PSGroupCell</string>
+            <key>label</key><string>外观</string>
+        </dict>
+        <dict>
+            <key>cell</key><string>PSLinkListCell</string>
+            <key>label</key><string>面板外观</string>
+            <key>key</key><string>appearance</string>
+            <key>defaults</key><string>com.yu.quicklaunch</string>
+            <key>default</key><integer>2</integer>
+            <key>validTitles</key>
+            <array>
+                <string>浅色</string>
+                <string>深色</string>
+                <string>跟随系统</string>
+            </array>
+            <key>validValues</key>
+            <array>
+                <integer>0</integer>
+                <integer>1</integer>
+                <integer>2</integer>
+            </array>
+        </dict>
+
+        <dict>
+            <key>cell</key><string>PSGroupCell</string>
+            <key>footerText</key><string>by 鱼教兽</string>
+        </dict>
+    </array>
+</dict>
+</plist>

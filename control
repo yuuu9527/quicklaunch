@@ -1,0 +1,9 @@
+Package: com.yu.quicklaunch
+Name: 快捷启动
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Swipe up to launch apps instantly, inspired by Dynamic Stage's trigger panel
+Maintainer: 鱼教兽
+Author: 鱼教兽
+Section: Yu-Tweaks
+Depends: mobilesubstrate, preferenceloader
