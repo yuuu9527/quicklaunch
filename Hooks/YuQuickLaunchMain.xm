@@ -54,6 +54,8 @@ static void yu_quicklaunch_start(void) {
 %end
 
 %ctor {
+    // The file declares an explicit group, so the default group needs manual init.
+    %init;
     @autoreleasepool {
         // Warm the configuration snapshot; the overlay installs once SpringBoard is up.
         [YuQuickLaunchConfig yu_quicklaunch_shared];
