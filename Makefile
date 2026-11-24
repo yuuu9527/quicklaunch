@@ -1,8 +1,6 @@
 DEBUG = 0
 FINALPACKAGE = 1
 
-ARCHS = arm64 arm64e
-
 # Share the SDK and deployment targets with the PreferenceBundle.
 include YuQuickLaunchBuild.mk
 include $(THEOS)/makefiles/common.mk
